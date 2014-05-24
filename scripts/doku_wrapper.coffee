@@ -30,7 +30,7 @@ define -> (spec) ->
     jQuery(textarea).val spec.get_value() if patching and id is textarea.id
     func id
 
-  doku_get_selection = patch 'getSelection', (func, obj) ->
+  doku_get_selection = patch 'DWgetSelection', (func, obj) ->
     if patching and obj is textarea
       jQuery(textarea).val spec.get_value() # workaround for edittable
       result = spec.get_selection()
@@ -62,7 +62,7 @@ define -> (spec) ->
         @doku_get_text()
     null
 
-  doku_set_selection = patch 'setSelection', (func, selection) ->
+  doku_set_selection = patch 'DWsetSelection', (func, selection) ->
     if patching and selection.obj is textarea
       spec.set_selection selection.start, selection.end
     else
